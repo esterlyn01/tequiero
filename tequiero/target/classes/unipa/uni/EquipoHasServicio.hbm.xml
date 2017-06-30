@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/06/2017 09:18:05 PM by Hibernate Tools 5.1.0.Final -->
+<hibernate-mapping>
+    <class name="unipa.uni.EquipoHasServicio" table="equipo_has_servicio" catalog="refri" optimistic-lock="version">
+        <id name="idEquipoSevicio" type="java.lang.Integer">
+            <column name="ID_EQUIPO_SEVICIO" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="equipo" class="unipa.uni.Equipo" fetch="select">
+            <column name="EQUIPO_PLACA" length="25" />
+        </many-to-one>
+        <many-to-one name="ordenServicio" class="unipa.uni.OrdenServicio" fetch="select">
+            <column name="orden_servicio_idORDEN_SERVICIO" />
+        </many-to-one>
+        <property name="fecha" type="java.util.Date">
+            <column name="FECHA" length="10" />
+        </property>
+        <property name="hora" type="java.util.Date">
+            <column name="HORA" length="8" />
+        </property>
+    </class>
+</hibernate-mapping>

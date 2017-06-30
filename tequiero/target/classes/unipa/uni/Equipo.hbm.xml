@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/06/2017 09:18:05 PM by Hibernate Tools 5.1.0.Final -->
+<hibernate-mapping>
+    <class name="unipa.uni.Equipo" table="equipo" catalog="refri" optimistic-lock="version">
+        <id name="placa" type="java.lang.String">
+            <column name="PLACA" length="25" />
+            <generator class="assigned" />
+        </id>
+        <property name="tipoDeAireA" type="java.lang.String">
+            <column name="TIPO_DE_AIRE_A" length="45" />
+        </property>
+        <property name="capacidadBtu" type="java.lang.Integer">
+            <column name="CAPACIDAD_BTU" />
+        </property>
+        <property name="ubicacion" type="java.lang.String">
+            <column name="UBICACION" length="45" />
+        </property>
+        <property name="amperaje" type="java.lang.Float">
+            <column name="AMPERAJE" precision="12" scale="0" />
+        </property>
+        <property name="voltaje" type="java.lang.Float">
+            <column name="VOLTAJE" precision="12" scale="0" />
+        </property>
+        <property name="presionAlta" type="java.lang.Integer">
+            <column name="PRESION_ALTA" />
+        </property>
+        <property name="presionBaja" type="java.lang.Integer">
+            <column name="PRESION_BAJA" />
+        </property>
+        <property name="refrigerante" type="java.lang.String">
+            <column name="REFRIGERANTE" length="10" />
+        </property>
+        <set name="equipoHasServicios" table="equipo_has_servicio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EQUIPO_PLACA" length="25" />
+            </key>
+            <one-to-many class="unipa.uni.EquipoHasServicio" />
+        </set>
+    </class>
+</hibernate-mapping>

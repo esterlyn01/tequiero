@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/06/2017 09:18:05 PM by Hibernate Tools 5.1.0.Final -->
+<hibernate-mapping>
+    <class name="unipa.uni.OrdenServicio" table="orden_servicio" catalog="refri" optimistic-lock="version">
+        <id name="idOrdenServicio" type="java.lang.Integer">
+            <column name="idORDEN_SERVICIO" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="servicio" class="unipa.uni.Servicio" fetch="select">
+            <column name="servicio_ID_SERVICIO" />
+        </many-to-one>
+        <many-to-one name="usuario" class="unipa.uni.Usuario" fetch="select">
+            <column name="USUARIO_ID_USUARIO" />
+        </many-to-one>
+        <property name="fecheOrdenSevicio" type="java.util.Date">
+            <column name="FECHE_ORDEN_SEVICIO" length="10" />
+        </property>
+        <set name="equipoHasServicios" table="equipo_has_servicio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="orden_servicio_idORDEN_SERVICIO" />
+            </key>
+            <one-to-many class="unipa.uni.EquipoHasServicio" />
+        </set>
+    </class>
+</hibernate-mapping>

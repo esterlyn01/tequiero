@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/06/2017 09:18:05 PM by Hibernate Tools 5.1.0.Final -->
+<hibernate-mapping>
+    <class name="unipa.uni.Usuario" table="usuario" catalog="refri" optimistic-lock="version">
+        <id name="idUsuario" type="java.lang.Integer">
+            <column name="ID_USUARIO" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="rol" class="unipa.uni.Rol" fetch="select">
+            <column name="ROL_ID_ROL" />
+        </many-to-one>
+        <many-to-one name="tipoDocumento" class="unipa.uni.TipoDocumento" fetch="select">
+            <column name="TIPO_DOCUMENTO_ID_TIPO_DOCUMENTO" />
+        </many-to-one>
+        <property name="nombreUsuario" type="java.lang.String">
+            <column name="NOMBRE_USUARIO" length="45" not-null="true" />
+        </property>
+        <property name="contrasenaUsuario" type="java.lang.String">
+            <column name="CONTRASENA_USUARIO" length="45" not-null="true" />
+        </property>
+        <property name="direccion" type="java.lang.String">
+            <column name="DIRECCION" length="45" />
+        </property>
+        <property name="telefono" type="java.lang.Integer">
+            <column name="TELEFONO" />
+        </property>
+        <property name="documento" type="java.lang.String">
+            <column name="DOCUMENTO" length="45" not-null="true" unique="true" />
+        </property>
+        <set name="ordenServicios" table="orden_servicio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="USUARIO_ID_USUARIO" />
+            </key>
+            <one-to-many class="unipa.uni.OrdenServicio" />
+        </set>
+    </class>
+</hibernate-mapping>

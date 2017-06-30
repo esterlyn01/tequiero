@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/06/2017 09:18:05 PM by Hibernate Tools 5.1.0.Final -->
+<hibernate-mapping>
+    <class name="unipa.uni.Servicio" table="servicio" catalog="refri" optimistic-lock="version">
+        <id name="idServicio" type="java.lang.Integer">
+            <column name="ID_SERVICIO" />
+            <generator class="identity" />
+        </id>
+        <property name="tipo" type="java.lang.String">
+            <column name="TIPO" length="45" not-null="true" />
+        </property>
+        <property name="descripcion" type="java.lang.String">
+            <column name="DESCRIPCION" length="300" />
+        </property>
+        <set name="ordenServicios" table="orden_servicio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="servicio_ID_SERVICIO" />
+            </key>
+            <one-to-many class="unipa.uni.OrdenServicio" />
+        </set>
+    </class>
+</hibernate-mapping>
