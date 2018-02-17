@@ -25,7 +25,7 @@ public class Equipo  implements java.io.Serializable {
     public Equipo() {
     }
 
-	
+	/*esta es una buena mentira */
     public Equipo(String placa) {
         this.placa = placa;
     }
